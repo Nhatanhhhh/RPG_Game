@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1bfcb65c1dddff418d8cf7889f40808, type: 3}
+  m_Name: DameBoost
+  m_EditorClassIdentifier: Assembly-CSharp::SkillSO
+  SkillName: DameBoost
+  maxLevel: 10
+  skillIcon: {fileID: 6734237056663082788, guid: 6fca9768df9b0ce43bf4e33c4689e395, type: 3}
