@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SkillSO
   SkillName: DameBoost
   maxLevel: 10
-  skillIcon: {fileID: 6734237056663082788, guid: 6fca9768df9b0ce43bf4e33c4689e395, type: 3}
+  skillIcon: {fileID: 1560976446343057638, guid: cba3d7f554090ac498f1e36cfd77e176, type: 3}

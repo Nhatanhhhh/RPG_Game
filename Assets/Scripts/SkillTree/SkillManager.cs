@@ -32,6 +32,7 @@
 //}
 
 using System.Runtime.InteropServices;
+using System.Runtime.Serialization;
 using UnityEngine;
 
 public class SkillManager : MonoBehaviour
@@ -60,7 +61,13 @@ public class SkillManager : MonoBehaviour
 
             case "DameBoost":
                 StatsManager.Instance.UpdateMaxDame(1);
+                Debug.LogWarning("MaxDame: " + StatsManager.Instance.damage);
                 break;
+
+            case "MoveSpeed":
+                StatsManager.Instance.UpdateMaxSpeed(1);
+                break;
+
             default:
                 Debug.LogWarning("Unknown Skill: " + skillName);
                 break;

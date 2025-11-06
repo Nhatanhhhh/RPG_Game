@@ -4,6 +4,7 @@ public class StatsManager : MonoBehaviour
 {
     public static StatsManager Instance;
     public TMP_Text healthText;
+    public StatsUI statsUI;
 
     [Header("Combat Stats")]
     public int damage;
@@ -29,12 +30,30 @@ public class StatsManager : MonoBehaviour
     public void UpdateMaxDame(int amount)
     {
         damage += amount;
-
-        
     }
     public void UpdateMaxHealth(int amount)
     {
         maxHealth += amount;
         healthText.text = "Hp: " + currentHealth + "/" + maxHealth; 
+    }
+
+    public void UpdateMaxSpeed(int amount)
+    {  
+        speed += amount;
+    
+    }
+    public void UpdateHealth(int amount)
+    {
+        currentHealth += amount;
+        if(currentHealth >= maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+        healthText.text = "Hp: " + currentHealth + "/" + maxHealth;
+    }
+    public void UpdateSpeed(int amount)
+    {
+        speed += amount;
+        statsUI.UpdateAllStats();
     }
 }
