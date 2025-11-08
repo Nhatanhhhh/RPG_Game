@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 426bbfa68af27194dabbabc8b019a010, type: 3}
+  m_Name: Musroom
+  m_EditorClassIdentifier: Assembly-CSharp::ItemSO
+  ItemName: Musroom
+  ItemDescription: an item
+  icon: {fileID: -3164809056393425246, guid: ffc45571736aa7e4985a7ddfacab63b9, type: 3}
+  isGold: 0
+  currentHealth: 3
+  maxHealth: 0
+  speed: 0
+  damage: 0
+  duaration: 0
