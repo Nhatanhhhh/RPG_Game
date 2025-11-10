@@ -28,7 +28,7 @@ import sys
 from typing import Dict, List, Tuple, Set, Optional
 
 
-SECTION_HEADER_RE = re.compile(r'^---\s*!u!(\d+)\s*&(\d+)\s*$')
+SECTION_HEADER_RE = re.compile(r'^---\s*!u!(\d+)\s*&(-?\d+)(?=\D).*?$')
 FILEID_FIELD_RE = re.compile(r'(\bfileID:\s*)(-?\d+)')  # captures "fileID: 12345" or negatives
 GO_BINDING_RE_TMPL = r'^\s*m_GameObject:\s*\{{\s*fileID:\s*{}\s*\}}'
 
@@ -78,8 +78,11 @@ def collect_used_ids(sections: List[Section]) -> Set[int]:
 
 
 def next_free_id(used: Set[int], start_from: int = 2000000000) -> int:
-    # Pick a large positive space for new IDs to avoid collisions
-    cand = max(start_from, (max(used) + 1) if used else start_from)
+    """
+    Generate a new positive id in a safe range, independent of existing huge/overflowing ids.
+    We purposely start from a fixed high base and increment until unused.
+    """
+    cand = start_from
     while cand in used:
         cand += 1
     used.add(cand)
@@ -89,8 +92,9 @@ def next_free_id(used: Set[int], start_from: int = 2000000000) -> int:
 def header_replace_fileid(lines: List[str], section: Section, new_id: int) -> None:
     # Replace only in the header line
     header_line = lines[section.start]
-    # Header is like: --- !u!<class> &<id>
-    new_header = re.sub(r'(&)(\d+)\s*$', f"&{new_id}", header_line)
+    # Header is like: --- !u!<class> &<id><optional trailing text>
+    # Replace only the id after '&', keep trailing text intact
+    new_header = re.sub(r'(&)(-?\d+)', f"&{new_id}", header_line, count=1)
     lines[section.start] = new_header
 
 
@@ -261,6 +265,29 @@ def sanitize_invalid_section_headers(lines: List[str], sections: List[Section], 
     return num_changes, remap
 
 
+def sanitize_duplicate_section_headers(lines: List[str], sections: List[Section], used_ids: Set[int]) -> int:
+    """
+    Ensure all section header &fileIDs are unique, even if they are "valid" numbers.
+    For any repeated id, keep the first occurrence, and for each subsequent section:
+      - assign a fresh id
+      - update the section header
+      - update 'fileID: old' tokens within that section body only (to keep local coherence)
+    """
+    seen: Set[int] = set()
+    changed = 0
+    for sec in sections:
+        old_id = sec.file_id
+        if old_id not in seen:
+            seen.add(old_id)
+            continue
+        # duplicate; assign new
+        new_id = next_free_id(used_ids)
+        header_replace_fileid(lines, sec, new_id)
+        replace_fileid_in_range(lines, sec.start, sec.end, old_id, new_id)
+        changed += 1
+    return changed
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Fix duplicate local fileIDs in a Unity .unity scene file.")
     parser.add_argument("--scene", required=True, help="Path to the .unity scene file (e.g., Assets/Scenes/RPG.unity)")
@@ -290,6 +317,12 @@ def main() -> int:
     # Second pass: sanitize invalid/overflowing section header anchors (&id)
     header_changes, header_remap = sanitize_invalid_section_headers(lines, sections, used_ids)
     sanitized_changes += header_changes
+
+    # Third pass: ensure all section header ids are unique (deduplicate)
+    # Re-parse to ensure sections reflect any header edits
+    sections = parse_sections(lines)
+    dedup_changes = sanitize_duplicate_section_headers(lines, sections, used_ids)
+    sanitized_changes += dedup_changes
 
     # Build GO duplicate groups
     groups = build_go_groups(sections)
