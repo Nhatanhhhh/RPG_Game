@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy_Combat : MonoBehaviour
 {
@@ -8,7 +9,12 @@ public class Enemy_Combat : MonoBehaviour
     public float knockbackForce;
     public float stunTime;
     public LayerMask playerLayer;
+    private Slider healthBarSlider;
 
+    void Awake()
+    {
+        healthBarSlider = GetComponentInChildren<Slider>();
+    }
 
     public void Attack()
     {

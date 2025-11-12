@@ -9,7 +9,20 @@ public class ShopManager : MonoBehaviour
 
     [SerializeField] private ShopSlot[] shopSlots;
     [SerializeField] private InventoryManager inventoryManager;
+    [SerializeField] private static ShopManager Instance;
 
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     public void PopulateShopItems(List<ShopItems> shopItems)
     {

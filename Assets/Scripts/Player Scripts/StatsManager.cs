@@ -1,5 +1,6 @@
+﻿using TMPro;
 using UnityEngine;
-using TMPro;
+
 public class StatsManager : MonoBehaviour
 {
     public static StatsManager Instance;
@@ -23,9 +24,14 @@ public class StatsManager : MonoBehaviour
     private void Awake()
     {
         if (Instance == null)
+        {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
         else
+        {
             Destroy(gameObject);
+        }
     }
     public void UpdateMaxDame(int amount)
     {

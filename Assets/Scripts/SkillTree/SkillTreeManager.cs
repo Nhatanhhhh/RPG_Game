@@ -4,9 +4,24 @@ using System.Collections.Generic;
 using TMPro;
 public class SkillTreeManager : MonoBehaviour
 {
+    public static SkillTreeManager Instance;
     public SkillSlot[] skillSlots;
     public TMP_Text pointsText;
     public int availablePoints;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     private void Start()
     {
         foreach(SkillSlot slot in skillSlots)

@@ -6,7 +6,7 @@ public class Enemy_Knockback : MonoBehaviour
     private Rigidbody2D rb;
     private Enemy_Movement enemy_Movement;
 
-    private void Start()
+    private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         enemy_Movement = GetComponent<Enemy_Movement>();

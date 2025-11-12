@@ -1,8 +1,9 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public static PlayerMovement Instance { get; private set; }
     public int facingDirection = 1;
 
     public Rigidbody2D rb;
@@ -11,6 +12,20 @@ public class PlayerMovement : MonoBehaviour
     private bool isKnockedBack;
 
     public Player_Combat player_Combat;
+
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void Update()
     {

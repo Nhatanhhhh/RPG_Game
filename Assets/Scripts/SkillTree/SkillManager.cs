@@ -31,12 +31,24 @@
 //    }
 //}
 
-using System.Runtime.InteropServices;
-using System.Runtime.Serialization;
 using UnityEngine;
 
 public class SkillManager : MonoBehaviour
 {
+    public static SkillManager Instance;
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     private void OnEnable()
     {
 
@@ -61,7 +73,7 @@ public class SkillManager : MonoBehaviour
 
             case "DameBoost":
                 StatsManager.Instance.UpdateMaxDame(1);
-                Debug.LogWarning("MaxDame: " + StatsManager.Instance.damage);
+                Debug.Log("MaxDame: " + StatsManager.Instance.damage);
                 break;
 
             case "MoveSpeed":

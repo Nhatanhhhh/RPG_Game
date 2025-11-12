@@ -6,6 +6,7 @@ public class ExeManager : MonoBehaviour
 
 
 {
+    public static ExeManager Instance;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public int level;
     public int currentExp;
@@ -15,6 +16,19 @@ public class ExeManager : MonoBehaviour
     public TMP_Text currentLevelText;
 
     public static event Action<int> OnLevelUp;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject); 
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void Update()
     {

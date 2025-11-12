@@ -18,11 +18,15 @@ public class Enemy_Movement : MonoBehaviour
     private Transform player;
     private Animator anim;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+    }
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
         ChangeState(EnemyState.Idle);
     }
 

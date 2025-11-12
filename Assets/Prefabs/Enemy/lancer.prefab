@@ -303,8 +303,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy_Health
   expReward: 3
-  currentHealth: 10
-  maxHealth: 10
+  gold: 3
+  maxHealth: 200
+  lootTable: []
+  spawnRadius: 1
 --- !u!114 &4949638521133828393
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -3164809056393425246, guid: ffc45571736aa7e4985a7ddfacab63b9, type: 3}
+  m_Sprite: {fileID: 1240172230030083877, guid: c11ffaedfa1a1f94e9456255dbd9d945, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -198,4 +198,5 @@ MonoBehaviour:
   itemSO: {fileID: 0}
   sr: {fileID: 2427099882945255068}
   anim: {fileID: 8226510385417107853}
+  canBePickUp: 1
   quantity: 2
