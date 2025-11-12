@@ -335,6 +335,10 @@ PrefabInstance:
       propertyPath: m_PresetInfoIsWorld
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2750851553993463529, guid: 8e6d5491a8f7da54ca3097f9adffd1df, type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4734749476964643284, guid: 8e6d5491a8f7da54ca3097f9adffd1df, type: 3}
       propertyPath: m_Name
       value: NormalHealthBar_Prefab
