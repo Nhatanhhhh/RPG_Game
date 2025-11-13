@@ -246,8 +246,8 @@ MonoBehaviour:
   respawnTime: 30
   expReward: 3
   maxHealth: 10
-  healthBarCanvas: {fileID: 0}
-  healthSlider: {fileID: 0}
+  healthBarCanvas: {fileID: 5115150506619041388}
+  healthSlider: {fileID: 8800105280327823094}
   lootTable: []
   spawnRadius: 1
 --- !u!114 &5708075342014133193
@@ -474,8 +474,24 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e6d5491a8f7da54ca3097f9adffd1df, type: 3}
+--- !u!1 &5115150506619041388 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4734749476964643284, guid: 8e6d5491a8f7da54ca3097f9adffd1df, type: 3}
+  m_PrefabInstance: {fileID: 525126584133109688}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &5404184668776111807 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5599692368004339975, guid: 8e6d5491a8f7da54ca3097f9adffd1df, type: 3}
   m_PrefabInstance: {fileID: 525126584133109688}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8800105280327823094 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9036999284945643854, guid: 8e6d5491a8f7da54ca3097f9adffd1df, type: 3}
+  m_PrefabInstance: {fileID: 525126584133109688}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
