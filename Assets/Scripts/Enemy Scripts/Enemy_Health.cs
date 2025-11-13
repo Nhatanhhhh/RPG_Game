@@ -47,7 +47,7 @@ public class Enemy_Health : MonoBehaviour
     {
         if (isBoss && !string.IsNullOrEmpty(persistentID))
         {
-            if (GameManager.Instance.defeatedEnemies.Contains(persistentID))
+            if (GameManager.Instance != null && GameManager.Instance.defeatedEnemies.Contains(persistentID))
             {
                 Destroy(gameObject);
                 return;
